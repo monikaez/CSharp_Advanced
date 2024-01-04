@@ -1,0 +1,46 @@
+string parenthesis = Console.ReadLine();
+
+Stack<char> openParenthesis = new Stack<char>();
+
+bool isBalanced = true;
+
+foreach (char symbol in parenthesis)
+{
+    if (symbol == '(' || symbol == '{' || symbol == '[')
+    {
+        openParenthesis.Push(symbol);
+    }
+    else
+    {
+        if (openParenthesis.Count == 0)
+        {
+            isBalanced = false;
+            break;
+        }
+
+        char lastSymbol = openParenthesis.Pop();
+        if (symbol == '(' && lastSymbol != ')')
+        {
+            isBalanced = false;
+            break;
+        }
+        if (symbol == '{' && lastSymbol != '}')
+        {
+            isBalanced = false;
+            break;
+        }
+        if (symbol == '[' && lastSymbol != ']')
+        {
+            isBalanced = false;
+            break;
+        }
+    }
+}
+if (isBalanced)
+{
+    Console.WriteLine("YES");
+}
+else
+{
+    Console.WriteLine("NO");
+}

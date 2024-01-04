@@ -1,0 +1,21 @@
+Stack<int> clohtes = new(
+    Console.ReadLine()
+    .Split(" ", StringSplitOptions.RemoveEmptyEntries)
+    .Select(int.Parse));
+
+int rackSize = int.Parse(Console.ReadLine());
+int currentRackSize = rackSize;
+int rackCount = 1;
+
+while (clohtes.Any())
+{
+    currentRackSize -= clohtes.Peek();
+    if (currentRackSize < 0)
+    {
+        currentRackSize = rackSize;
+        rackCount++;
+        continue;
+    }
+    clohtes.Pop();
+}
+Console.WriteLine(rackCount);

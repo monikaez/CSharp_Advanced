@@ -1,0 +1,35 @@
+int[] tokens = Console.ReadLine()
+    .Split()
+    .Select(int.Parse)
+    .ToArray();
+
+int[] numbers = Console.ReadLine()
+    .Split()
+    .Select(int.Parse)
+    .ToArray();
+
+Queue <int> stack = new Queue<int>();
+int elementToPush = tokens[0];
+int elementToPop = tokens[1];
+int elementToPeek = tokens[2];
+
+for (int i = 0; i < elementToPush; i++)
+{
+    stack.Enqueue(numbers[i]);
+}
+for (int i = 0; i < elementToPop; i++)
+{
+    stack.Dequeue();
+}
+if (stack.Contains(elementToPeek))
+{
+
+    Console.WriteLine("true");
+}
+else
+{
+    if (stack.Any()) Console.WriteLine(stack.Min());
+    else Console.WriteLine(0);
+}
+
+
