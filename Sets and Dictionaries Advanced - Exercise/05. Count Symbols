@@ -1,0 +1,16 @@
+SortedDictionary<char, int> charCounts = new();
+string text = Console.ReadLine();
+
+foreach (var symbol in text)
+{
+	if (!charCounts.ContainsKey(symbol))
+	{
+		charCounts.Add(symbol,0);
+	}
+	charCounts[symbol]++;
+}
+foreach (var symbol in charCounts)
+{
+	Console.WriteLine($"{symbol.Key}: {symbol.Value} time/s");
+}
+

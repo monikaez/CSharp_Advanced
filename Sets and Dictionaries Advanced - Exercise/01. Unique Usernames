@@ -1,0 +1,14 @@
+int count = int.Parse(Console.ReadLine());
+
+HashSet<string> userNames = new();
+
+for (int i = 0; i < count; i++)
+{
+    string names = Console.ReadLine();
+    userNames.Add(names);
+
+}
+foreach (var name in userNames)
+{
+    Console.WriteLine(name);
+}

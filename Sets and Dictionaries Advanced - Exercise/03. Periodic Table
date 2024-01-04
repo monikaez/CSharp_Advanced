@@ -1,0 +1,10 @@
+SortedSet<string> periodicTable = new();
+int count = int.Parse(Console.ReadLine());
+
+for (int i = 0; i < count; i++)
+{
+    string[] element = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+    periodicTable.UnionWith(element);
+}
+Console.WriteLine(string.Join(" ",periodicTable));
