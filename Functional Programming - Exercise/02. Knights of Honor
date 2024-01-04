@@ -1,0 +1,14 @@
+02. Knights of Honor
+
+string[] input = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+Action<string,string[]> printNamesAddTitle = (title,names) =>
+
+{
+	foreach (var name in names)
+	{
+		Console.WriteLine($"{title} {name}");
+	}
+};
+
+printNamesAddTitle("Sir", input);
