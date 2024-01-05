@@ -1,0 +1,60 @@
+Dictionary<string, int> peaks = new()
+{
+    {"Vihren",80 },
+    {"Kutelo",90 },
+    {"Banski Suhodol",100},
+    {"Polezhan",60 },
+    {"Kamenitza",70 }
+};
+
+Stack<int> foodPortions = new(Console.ReadLine()
+    .Split(", ", StringSplitOptions.RemoveEmptyEntries)
+    .Select(int.Parse));
+
+Queue<int> staminaQuantitys = new(Console.ReadLine()
+    .Split(", ", StringSplitOptions.RemoveEmptyEntries)
+    .Select(int.Parse));
+
+Queue<string> peaksNames = new(new List<string>
+{
+    "Vihren","Kutelo","Banski Suhodol","Polezhan","Kamenitza"
+});
+
+List<string> finalPeaks = new();
+
+while (foodPortions.Any() && staminaQuantitys.Any() && peaksNames.Any())
+{
+    int foodPortion = foodPortions.Pop();
+    int staminaQuantity = staminaQuantitys.Dequeue();
+    int peakDiff = peaks[peaksNames.Peek()];
+
+    if (foodPortion + staminaQuantity >= peakDiff)
+    {
+        finalPeaks.Add(peaksNames.Dequeue());
+    }
+
+}
+if (peaksNames.Any())
+{
+    Console.WriteLine("Alex failed! He has to organize his journey better next time -> @PIRINWINS");
+}
+else
+{
+    Console.WriteLine("Alex did it! He climbed all top five Pirin peaks in one week -> @FIVEinAWEEK");
+}
+
+
+
+
+if (finalPeaks.Any())
+{
+    Console.WriteLine("Conquered peaks:");
+    foreach (var peak in finalPeaks)
+    {
+        Console.WriteLine(peak);
+    }
+}
+
+
+
+
