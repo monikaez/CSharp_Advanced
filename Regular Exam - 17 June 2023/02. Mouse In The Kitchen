@@ -1,0 +1,105 @@
+string[] dimensions = Console.ReadLine().Split(',',StringSplitOptions.RemoveEmptyEntries);
+int n = int.Parse(dimensions[0]);
+int m = int.Parse(dimensions[1]);
+ 
+string[,] cupboard = new string[n, m];
+ 
+int mouseRow = -1;
+int mouseCol = -1;
+int cheeseCount = 0;
+for (int i = 0; i < cupboard.GetLength(0); i++)
+{
+    string row = Console.ReadLine();
+    for (int j = 0; j < cupboard.GetLength(1); j++)
+    {
+        char cell = row[j];
+        cupboard[i, j] = cell;
+        if (cell == 'M')
+        {
+            mouseRow = i;
+            mouseCol = j;
+			cupboard[mouseRow, mouseCol] = "*";
+        }
+       if (cell == 'C')
+        {
+            cheeseCount++;
+        }
+    }
+}
+ 
+string command = Console.ReadLine();
+while (command != "danger")
+{
+    int newRow = mouseRow;
+    int newCol = mouseCol;
+    switch (command)
+    {
+        case "up":
+            newRow--;
+            break;
+        case "down":
+            newRow++;
+            break;
+        case "left":
+            newCol--;
+            break;
+        case "right":
+            newCol++;
+            break;
+    }
+ 
+    if (newRow < 0 || newRow >= n || newCol < 0 || newCol >= m)
+    {
+        Console.WriteLine("No more cheese for tonight!");
+        break;
+    }
+ 
+    char newCell = cupboard[newRow, newCol];
+    if (newCell == '@')
+    {
+
+        // Skip the command
+    }
+    if (newCell == 'T')
+    {
+        cupboard[mouseRow, mouseCol] = '*';
+        Console.WriteLine("Mouse is trapped!");
+        break;
+    }
+    if (newCell == 'C')
+    {
+        cupboard[mouseRow, mouseCol] = '*';
+        cupboard[newRow, newCol] = 'M';
+        mouseRow = newRow;
+        mouseCol = newCol;
+        cheeseCount--;
+        if (cheeseCount == 0)
+        {
+            Console.WriteLine("Happy mouse! All the cheese is eaten, good night!");
+            break;
+        }
+    }
+    if (newCell == '*')
+    {
+        cupboard[mouseRow, mouseCol] = '*';
+        cupboard[newRow, newCol] = 'M';
+        mouseRow = newRow;
+        mouseCol = newCol;
+    }
+ 
+    direction = Console.ReadLine();
+}
+ 
+if (direction == "danger")
+{
+    Console.WriteLine("Mouse will come back later!");
+}
+ 
+for (int i = 0; i < n; i++)
+{
+    for (int j = 0; j < m; j++)
+    {
+        Console.Write(cupboard[i, j]);
+    }
+    Console.WriteLine();
+}
